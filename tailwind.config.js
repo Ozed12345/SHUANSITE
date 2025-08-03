@@ -7,7 +7,7 @@ module.exports = {
     extend: {
       fontFamily: {
         'sans': ['Open Sans', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Helvetica Neue', 'Arial', 'Noto Sans', 'sans-serif'],
-        'display': ['Merriweather', 'Georgia', 'serif'],
+        'display': ['Markazi Text', 'Georgia', 'serif'],
         'mono': ['Fira Code', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', 'monospace'],
         'brand': ['Markazi Text', 'serif'],
         'open-sans': ['Open Sans', 'sans-serif'],

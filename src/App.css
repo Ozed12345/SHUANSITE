@@ -40,8 +40,110 @@
 /* Custom responsive styles for SHUAN site */
 
 /* Ensure proper viewport behavior */
-html {
+html, body {
   scroll-behavior: smooth;
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Ensure background video covers entire viewport */
+body {
+  position: relative;
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+}
+
+/* Enhanced blur effects and overlay */
+.backdrop-blur-lg {
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+}
+
+.backdrop-blur-md {
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+}
+
+/* Background video fixes */
+.fixed.top-0.left-0.w-full.h-full.z-0,
+.fixed.top-0.left-0.w-screen.h-screen.z-0 {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 0 !important;
+  overflow: hidden !important;
+}
+
+.fixed.top-0.left-0.w-full.h-full.z-0 video,
+.fixed.top-0.left-0.w-screen.h-screen.z-0 video {
+  width: 100vw !important;
+  height: 100vh !important;
+  object-fit: contain !important;
+  object-position: center !important;
+  min-width: 100vw !important;
+  min-height: 100vh !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  filter: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* Ensure background video covers entire viewport on all devices */
+@media screen and (max-width: 768px) {
+  .fixed.top-0.left-0.w-screen.h-screen.z-0 {
+    width: 100vw !important;
+    height: 100vh !important;
+    min-width: 100vw !important;
+    min-height: 100vh !important;
+  }
+  
+  .fixed.top-0.left-0.w-screen.h-screen.z-0 video {
+    width: 100vw !important;
+    height: 100vh !important;
+    min-width: 100vw !important;
+    min-height: 100vh !important;
+    object-fit: contain !important;
+  }
+}
+
+/* Fix for iOS Safari viewport issues */
+@supports (-webkit-touch-callout: none) {
+  .fixed.top-0.left-0.w-screen.h-screen.z-0 {
+    width: 100vw !important;
+    height: 100vh !important;
+    height: -webkit-fill-available !important;
+  }
+  
+  .fixed.top-0.left-0.w-screen.h-screen.z-0 video {
+    width: 100vw !important;
+    height: 100vh !important;
+    height: -webkit-fill-available !important;
+    object-fit: contain !important;
+  }
+}
+
+/* Ensure background video is never blurred */
+video {
+  filter: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* Modal should not affect page scroll */
+.fixed.inset-0.z-\[10000\] {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  z-index: 10000 !important;
 }
 
 /* Fix for mobile viewport issues */
@@ -62,6 +164,291 @@ html {
   h3 {
     word-wrap: break-word;
     hyphens: auto;
+  }
+}
+
+/* Mobile-specific fixes for video controls and layout */
+@media (max-width: 768px) {
+  /* Reduce header height on mobile */
+  header {
+    height: 60px !important;
+  }
+  
+  /* Fix video responsiveness */
+  .mv-video-section video,
+  .mv-video-section iframe {
+    width: 100% !important;
+    height: auto !important;
+    max-height: 50vh !important;
+    object-fit: contain !important;
+  }
+  
+  /* Make video containers responsive */
+  .mv-video-section .w-full.max-w-4xl {
+    max-width: 100% !important;
+    margin: 0 1rem !important;
+  }
+  
+  /* Reduce spacing between sections on mobile */
+  .py-8 {
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+  }
+  
+  .py-12 {
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+  }
+  
+  /* Reduce text sizes for mobile */
+  .text-4xl {
+    font-size: 2rem !important;
+  }
+  
+  .text-5xl {
+    font-size: 2.5rem !important;
+  }
+  
+  .text-6xl {
+    font-size: 3rem !important;
+  }
+  
+  /* Fix video modal for mobile */
+  .fixed.inset-0.z-\[10000\] {
+    padding: 0.5rem !important;
+  }
+  
+  /* Reduce control thickness on mobile */
+  .vimeo-controls-bar .h-1 {
+    height: 2px !important;
+  }
+  
+  .vimeo-controls-bar .w-16.h-1 {
+    width: 12px !important;
+    height: 2px !important;
+  }
+  
+  /* Reduce button sizes on mobile */
+  .vimeo-controls-bar button {
+    width: 32px !important;
+    height: 32px !important;
+  }
+  
+  .vimeo-controls-bar .w-10.h-10 {
+    width: 32px !important;
+    height: 32px !important;
+  }
+  
+  .vimeo-controls-bar .w-8.h-8 {
+    width: 28px !important;
+    height: 28px !important;
+  }
+  
+  /* Reduce icon sizes on mobile */
+  .vimeo-controls-bar svg {
+    width: 16px !important;
+    height: 16px !important;
+  }
+  
+  .vimeo-controls-bar .w-5.h-5 {
+    width: 16px !important;
+    height: 16px !important;
+  }
+  
+  .vimeo-controls-bar .w-4.h-4 {
+    width: 14px !important;
+    height: 14px !important;
+  }
+  
+  /* Reduce text size on mobile */
+  .vimeo-controls-bar .text-sm {
+    font-size: 0.75rem !important;
+  }
+  
+  /* Reduce spacing in controls */
+  .vimeo-controls-bar .space-x-3 > * + * {
+    margin-left: 0.5rem !important;
+  }
+  
+  .vimeo-controls-bar .space-x-2 > * + * {
+    margin-left: 0.25rem !important;
+  }
+  
+  /* Fix mobile navigation */
+  .md\\:hidden.absolute.top-full {
+    top: 60px !important;
+  }
+  
+  /* Ensure columns stack on mobile */
+  .md\\:flex-row {
+    flex-direction: column !important;
+  }
+  
+  .md\\:grid-cols-2 {
+    grid-template-columns: 1fr !important;
+  }
+  
+  /* Reduce gaps on mobile */
+  .md\\:gap-8 {
+    gap: 1rem !important;
+  }
+  
+  .lg\\:gap-12 {
+    gap: 1.5rem !important;
+  }
+  
+  /* Fix spacing in feature details */
+  .space-y-4 > * + * {
+    margin-top: 0.75rem !important;
+  }
+  
+  .space-y-6 > * + * {
+    margin-top: 1rem !important;
+  }
+  
+  .space-y-8 > * + * {
+    margin-top: 1.5rem !important;
+  }
+  
+  /* Reduce padding on mobile */
+  .px-4 {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+  
+  .px-6 {
+    padding-left: 1.25rem !important;
+    padding-right: 1.25rem !important;
+  }
+  
+  /* Fix hero section spacing */
+  .pt-16 {
+    padding-top: 4rem !important;
+  }
+  
+  .pt-20 {
+    padding-top: 5rem !important;
+  }
+  
+  .pt-24 {
+    padding-top: 6rem !important;
+  }
+  
+  /* Reduce space between hero elements */
+  .space-y-6 {
+    gap: 1rem !important;
+  }
+  
+  .space-y-8 {
+    gap: 1.5rem !important;
+  }
+  
+  .space-y-12 {
+    gap: 2rem !important;
+  }
+  
+  /* Fix aspect ratios for mobile */
+  [style*="aspectRatio: '16/9'"] {
+    aspect-ratio: 16/9 !important;
+    height: auto !important;
+  }
+  
+  /* Ensure videos don't overflow */
+  .object-cover {
+    object-fit: cover !important;
+  }
+  
+  .object-contain {
+    object-fit: contain !important;
+  }
+  
+  /* Fix modal close button on mobile */
+  .absolute.top-4.right-4 {
+    top: 0.5rem !important;
+    right: 0.5rem !important;
+  }
+  
+  .w-10.h-10 {
+    width: 36px !important;
+    height: 36px !important;
+  }
+  
+  /* Reduce modal padding on mobile */
+  .p-4 {
+    padding: 0.5rem !important;
+  }
+  
+  /* Fix background video on mobile */
+  .fixed.top-0.left-0.w-full.h-full {
+    height: 100vh !important;
+  }
+  
+  /* Ensure proper z-index stacking */
+  .z-0 { z-index: 0 !important; }
+  .z-10 { z-index: 10 !important; }
+  .z-20 { z-index: 20 !important; }
+  .z-30 { z-index: 30 !important; }
+  .z-40 { z-index: 40 !important; }
+  .z-50 { z-index: 50 !important; }
+}
+
+/* Extra small mobile devices */
+@media (max-width: 480px) {
+  /* Further reduce text sizes */
+  .text-4xl {
+    font-size: 1.75rem !important;
+  }
+  
+  .text-5xl {
+    font-size: 2rem !important;
+  }
+  
+  /* Reduce padding further */
+  .px-4 {
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+  }
+  
+  /* Reduce control thickness even more */
+  .vimeo-controls-bar .h-1 {
+    height: 1px !important;
+  }
+  
+  .vimeo-controls-bar .w-16.h-1 {
+    width: 10px !important;
+    height: 1px !important;
+  }
+  
+  /* Smaller buttons for very small screens */
+  .vimeo-controls-bar button {
+    width: 28px !important;
+    height: 28px !important;
+  }
+  
+  .vimeo-controls-bar .w-10.h-10 {
+    width: 28px !important;
+    height: 28px !important;
+  }
+  
+  .vimeo-controls-bar .w-8.h-8 {
+    width: 24px !important;
+    height: 24px !important;
+  }
+  
+  /* Smaller icons */
+  .vimeo-controls-bar svg {
+    width: 14px !important;
+    height: 14px !important;
+  }
+  
+  .vimeo-controls-bar .w-5.h-5 {
+    width: 14px !important;
+    height: 14px !important;
+  }
+  
+  .vimeo-controls-bar .w-4.h-4 {
+    width: 12px !important;
+    height: 12px !important;
   }
 }
 
@@ -1296,11 +1683,35 @@ html {
 }
 
 .mv-video-title {
-  font-size: 2.5rem;
+  font-size: 1.35rem; /* text-2xl - 10% */
   font-weight: 700;
   margin-bottom: 1rem;
   color: white;
   line-height: 1.2;
+}
+
+@media (min-width: 640px) {
+  .mv-video-title {
+    font-size: 1.6875rem; /* sm:text-3xl - 10% */
+  }
+}
+
+@media (min-width: 768px) {
+  .mv-video-title {
+    font-size: 2.025rem; /* md:text-4xl - 10% */
+  }
+}
+
+@media (min-width: 1024px) {
+  .mv-video-title {
+    font-size: 2.7rem; /* lg:text-5xl - 10% */
+  }
+}
+
+@media (min-width: 1280px) {
+  .mv-video-title {
+    font-size: 3.375rem; /* xl:text-6xl - 10% */
+  }
 }
 
 .mv-video-description {
@@ -1345,9 +1756,7 @@ html {
     height: 24px;
   }
 
-  .mv-video-title {
-    font-size: 2rem;
-  }
+
 
   .mv-video-description {
     font-size: 1rem;
@@ -1436,3 +1845,771 @@ html {
     height: 24px;
   }
 }
+
+/* Enhanced Mobile Responsiveness */
+@media (max-width: 768px) {
+  /* Improve touch targets */
+  button, 
+  [role="button"],
+  input[type="range"],
+  .cursor-pointer {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Better video controls for mobile */
+  .mv-controls,
+  .mv-modal-controls {
+    padding: 16px 12px;
+  }
+
+  .mv-control-button,
+  .mv-modal-control-button {
+    padding: 12px;
+    min-width: 48px;
+    min-height: 48px;
+  }
+
+  .mv-control-button svg,
+  .mv-modal-control-button svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  /* Improve form fields on mobile */
+  input, textarea, select {
+    font-size: 16px !important; /* Prevents zoom on iOS */
+    padding: 12px 16px !important;
+  }
+
+  /* Better spacing for mobile */
+  .space-y-4 > * + * {
+    margin-top: 1rem;
+  }
+
+  .space-y-6 > * + * {
+    margin-top: 1.5rem;
+  }
+
+  .space-y-8 > * + * {
+    margin-top: 2rem;
+  }
+
+  /* Improve text readability */
+  h1, h2, h3, h4, h5, h6 {
+    line-height: 1.2;
+    word-wrap: break-word;
+  }
+
+  /* Better video aspect ratios */
+  .video-container,
+  .mv-video-container {
+    aspect-ratio: 16/9;
+    width: 100%;
+    height: auto;
+  }
+
+  /* Improve modal interactions */
+  .modal-content {
+    max-height: 90vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Better navigation */
+  .mobile-nav-item {
+    padding: 16px 20px;
+    font-size: 18px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* Improve button interactions */
+  .btn-primary {
+    padding: 16px 24px;
+    font-size: 18px;
+    border-radius: 12px;
+  }
+
+  /* Better progress bars for touch */
+  input[type="range"] {
+    height: 8px;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  input[type="range"]::-webkit-slider-thumb {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: white;
+    cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  input[type="range"]::-moz-range-thumb {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: white;
+    cursor: pointer;
+    border: none;
+  }
+}
+
+/* Tablet Optimizations */
+@media (min-width: 769px) and (max-width: 1024px) {
+  /* Better grid layouts for tablets */
+  .grid-cols-1.md\:grid-cols-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Improve text sizing */
+  .text-2xl.md\:text-3xl {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+  }
+
+  /* Better video controls */
+  .mv-control-button {
+    padding: 16px;
+    min-width: 56px;
+    min-height: 56px;
+  }
+
+  .mv-control-button svg {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+/* Large Screen Optimizations */
+@media (min-width: 1025px) {
+  /* Enhanced hover effects */
+  .hover\:scale-105:hover {
+    transform: scale(1.05);
+  }
+
+  /* Better spacing */
+  .space-y-12 > * + * {
+    margin-top: 3rem;
+  }
+
+  /* Improved video player */
+  .mv-video-container {
+    max-width: 1200px;
+  }
+}
+
+/* Accessibility Improvements */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Focus indicators for better accessibility */
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+a:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .text-gray-300 {
+    color: white;
+  }
+  
+  .text-gray-400 {
+    color: #e5e7eb;
+  }
+  
+  .bg-gray-800 {
+    background-color: #1f2937;
+  }
+}
+
+/* Dark mode optimizations */
+@media (prefers-color-scheme: dark) {
+  .bg-white {
+    background-color: #ffffff;
+  }
+  
+  .text-black {
+    color: #000000;
+  }
+}
+
+/* Print styles */
+@media print {
+  .mv-video-container,
+  .mv-controls,
+  .mv-modal-overlay {
+    display: none !important;
+  }
+  
+  body {
+    background: white !important;
+    color: black !important;
+  }
+}
+
+/* Landscape mobile optimizations */
+@media (max-width: 768px) and (orientation: landscape) {
+  .hero-section {
+    min-height: 100vh;
+    padding-top: 60px;
+  }
+  
+  .mv-video-container {
+    max-height: 60vh;
+  }
+}
+
+/* Portrait mobile optimizations */
+@media (max-width: 768px) and (orientation: portrait) {
+  .hero-section {
+    min-height: 100vh;
+    padding-top: 80px;
+  }
+  
+  .mv-video-container {
+    max-height: 50vh;
+  }
+}
+
+/* Ultra-wide screen support */
+@media (min-width: 1920px) {
+  .container {
+    max-width: 1400px;
+  }
+  
+  .mv-video-container {
+    max-width: 1400px;
+  }
+}
+
+/* Small mobile devices */
+@media (max-width: 375px) {
+  .text-4xl {
+    font-size: 2rem;
+  }
+  
+  .text-5xl {
+    font-size: 2.5rem;
+  }
+  
+  .px-4 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  .py-3 {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+  }
+}
+
+/* Large mobile devices */
+@media (min-width: 376px) and (max-width: 768px) {
+  .text-4xl {
+    font-size: 2.25rem;
+  }
+  
+  .text-5xl {
+    font-size: 3rem;
+  }
+}
+
+/* Performance optimizations */
+.video-container video,
+.mv-video-container video {
+  will-change: transform;
+}
+
+/* Smooth scrolling for all devices */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Better loading states */
+.loading {
+  position: relative;
+  overflow: hidden;
+}
+
+.loading::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* Vimeo Modal Controls Styling - Simplified */
+.vimeo-controls-bar {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Modal Background Effect */
+.fixed.inset-0.z-\[9999\] {
+  background: linear-gradient(135deg, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.98) 100%) !important;
+}
+
+/* Gradient Animation */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Modal Animation */
+@keyframes modalAppear {
+  0% {
+    opacity: 0;
+    transform: scale(0.9) translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Fullscreen Modal Styling */
+#vimeo-modal-container:fullscreen {
+  width: 100vw !important;
+  height: 100vh !important;
+  max-width: none !important;
+  border-radius: 0 !important;
+  background: black !important;
+}
+
+#vimeo-modal-container:fullscreen iframe {
+  width: 100vw !important;
+  height: 100vh !important;
+  border-radius: 0 !important;
+}
+
+/* Webkit fullscreen support */
+#vimeo-modal-container:-webkit-full-screen {
+  width: 100vw !important;
+  height: 100vh !important;
+  max-width: none !important;
+  border-radius: 0 !important;
+  background: black !important;
+}
+
+#vimeo-modal-container:-webkit-full-screen iframe {
+  width: 100vw !important;
+  height: 100vh !important;
+  border-radius: 0 !important;
+}
+
+/* Mozilla fullscreen support */
+#vimeo-modal-container:-moz-full-screen {
+  width: 100vw !important;
+  height: 100vh !important;
+  max-width: none !important;
+  border-radius: 0 !important;
+  background: black !important;
+}
+
+#vimeo-modal-container:-moz-full-screen iframe {
+  width: 100vw !important;
+  height: 100vh !important;
+  border-radius: 0 !important;
+}
+
+/* Timeline Bar Styling */
+.timeline-bar {
+  background: #222 !important;
+  border: none !important;
+  height: 3px !important;
+  border-radius: 2px !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+.timeline-bar::-webkit-slider-thumb {
+  appearance: none;
+  width: 10px;
+  height: 10px;
+  background: #fff;
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 0 2px #fff;
+  margin-top: -3.5px;
+}
+.timeline-bar::-moz-range-thumb {
+  width: 10px;
+  height: 10px;
+  background: #fff;
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 0 2px #fff;
+}
+.timeline-bar::-ms-thumb {
+  width: 10px;
+  height: 10px;
+  background: #fff;
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 0 2px #fff;
+}
+.timeline-bar:focus {
+  outline: none !important;
+}
+
+/* Volume Bar Styling */
+.volume-bar {
+  background: #fff !important;
+  border: none !important;
+  height: 3px !important;
+  border-radius: 2px !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+.volume-bar::-webkit-slider-thumb {
+  appearance: none;
+  width: 10px;
+  height: 10px;
+  background: #fff;
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 0 2px #fff;
+  margin-top: -3.5px;
+}
+.volume-bar::-moz-range-thumb {
+  width: 10px;
+  height: 10px;
+  background: #fff;
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 0 2px #fff;
+}
+.volume-bar::-ms-thumb {
+  width: 10px;
+  height: 10px;
+  background: #fff;
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 0 2px #fff;
+}
+.volume-bar:focus {
+  outline: none !important;
+}
+
+/* Controls bar minimal */
+.vimeo-controls-bar button,
+.vimeo-controls-bar span,
+.vimeo-controls-bar div {
+  border: none !important;
+  background: none !important;
+  box-shadow: none !important;
+}
+
+.vimeo-controls-bar span {
+  font-family: 'Courier New', monospace;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  background: transparent !important;
+  border: none !important;
+  color: #fff !important;
+  padding: 0 !important;
+}
+
+.vimeo-controls-bar .flex.items-center.gap-2 {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+}
+
+/* Remove all extra backgrounds and borders from controls */
+.vimeo-controls-bar button {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Ensure timeline progress is visible */
+.timeline-bar .bg-white {
+  background: white !important;
+  box-shadow: 0 0 4px rgba(255, 255, 255, 0.5) !important;
+}
+
+/* Hide range slider thumb for timeline and volume - bulletproof */
+input[type="range"].no-thumb::-webkit-slider-thumb {
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+input[type="range"].no-thumb::-moz-range-thumb {
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+input[type="range"].no-thumb::-ms-thumb {
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+input[type="range"].no-thumb:focus {
+  outline: none !important;
+}
+
+/* Make timeline bar thin and white, no thumb, with proper progress */
+.timeline-bar {
+  background: linear-gradient(to right, #fff 0%, #222 0%) !important;
+  border: none !important;
+  height: 2px !important;
+  border-radius: 1px !important;
+  outline: none !important;
+  box-shadow: none !important;
+  margin: 0 !important;
+}
+
+/* Make volume bar show progress correctly */
+.volume-bar {
+  background: linear-gradient(to right, #fff 0%, #222 0%) !important;
+  border: none !important;
+  height: 3px !important;
+  border-radius: 2px !important;
+  outline: none !important;
+  box-shadow: none !important;
+  margin: 0 !important;
+  width: 96px !important;
+}
+
+/* Modal overlay super blur and highest z-index */
+.fixed.inset-0.z-50, .fixed.inset-0.z-\[9999\] {
+  backdrop-filter: blur(200px) !important;
+  -webkit-backdrop-filter: blur(200px) !important;
+  background: rgba(0,0,0,0.99) !important;
+  z-index: 9999 !important;
+}
+
+/* --- MODAL OVERLAY: EXTREME BLUR, SEMI-TRANSPARENT, FULL VIEWPORT, HIGHEST Z-INDEX --- */
+.vimeo-modal-overlay, .fixed.inset-0.z-50, .fixed.inset-0.z-\[9999\] {
+  position: fixed;
+  inset: 0;
+  z-index: 99999 !important;
+  background: rgba(0,0,0,0.7) !important;
+  -webkit-backdrop-filter: blur(60px) !important;
+  backdrop-filter: blur(60px) !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
+}
+
+/* --- MODAL VIDEO CONTAINER: NEAT, RESPONSIVE, PREMIUM --- */
+.vimeo-modal-video-container {
+  position: relative;
+  aspect-ratio: 16/9;
+  width: min(96vw, 96vh * 16/9);
+  height: min(96vh, 96vw / 16*9);
+  background: #000;
+  border-radius: 24px;
+  box-shadow: 0 0 80px 8px rgba(0,0,0,0.95), 0 0 0 3px rgba(255,255,255,0.12);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 !important;
+  margin: 0 !important;
+  transform: none;
+}
+
+.vimeo-modal-video-container iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 24px;
+  z-index: 10;
+  background: #000;
+}
+
+/* --- CONTROLS BAR: NEAT, GROUPED, RESPONSIVE --- */
+.vimeo-controls-bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-end;
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 0 24px 24px;
+  padding: 0 8px 0 8px !important;
+  z-index: 30 !important;
+  gap: 0;
+}
+.vimeo-controls-bar > .flex.items-center {
+  order: 1;
+  gap: 0.5rem;
+  padding: 0.25rem 0;
+  min-height: 48px;
+  background: rgba(0,0,0,0.5);
+  border-radius: 0 0 18px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.vimeo-controls-bar > .timeline-bar {
+  order: 2;
+  margin: 0.25rem 0 0.5rem 0;
+}
+
+/* --- TIMELINE & VOLUME BARS: NO THUMB, SHOW PROGRESS, NEAT --- */
+.timeline-bar, .volume-bar {
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  background: linear-gradient(to right, #fff 0%, #222 0%) !important;
+  border: none !important;
+  height: 3px !important;
+  border-radius: 2px !important;
+  outline: none !important;
+  box-shadow: none !important;
+  margin: 0 !important;
+  width: 100%;
+  cursor: pointer;
+}
+.timeline-bar::-webkit-slider-thumb,
+.volume-bar::-webkit-slider-thumb {
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+.timeline-bar::-moz-range-thumb,
+.volume-bar::-moz-range-thumb {
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+.timeline-bar::-ms-thumb,
+.volume-bar::-ms-thumb {
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* --- MOBILE RESPONSIVENESS --- */
+@media (max-width: 900px) {
+  .vimeo-modal-video-container {
+    width: 99vw;
+    height: 60vw;
+    max-width: 100vw;
+    max-height: 60vw;
+    border-radius: 12px;
+  }
+  .vimeo-controls-bar {
+    padding: 6px 4px !important;
+    border-radius: 0 0 12px 12px;
+  }
+}
+@media (max-width: 600px) {
+  .vimeo-modal-video-container {
+    aspect-ratio: 16/9;
+    max-height: 50vh;
+    border-radius: 6px;
+  }
+  .vimeo-controls-bar {
+    padding: 4px 2px !important;
+    border-radius: 0 0 6px 6px;
+  }
+}
+
+/* --- CLOSE BUTTON: NEAT, RESPONSIVE --- */
+.vimeo-modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 44px;
+  height: 44px;
+  background: rgba(0,0,0,0.6);
+  border: none;
+  border-radius: 50%;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1010;
+  transition: all 0.3s;
+}
+.vimeo-modal-close:hover {
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+}
+
+/* --- TIME DISPLAY: NEAT, RESPONSIVE --- */
+.vimeo-time-display {
+  font-family: "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas, "Courier New", monospace;
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+  letter-spacing: 0.5px;
+  min-width: 80px;
+  text-align: center;
+  background: transparent;
+  border: none;
+  padding: 0 8px;
+  border-radius: 4px;
+}
+
+
