@@ -1,0 +1,15 @@
+{
+  "projects": {
+    "default": "shuan-40912"
+  },
+  "targets": {
+    "shuan-40912": {
+      "hosting": {
+        "shuangear": [
+          "shuangear"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}

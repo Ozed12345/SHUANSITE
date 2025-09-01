@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vimeo Player Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #000;
+            color: white;
+        }
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        iframe {
+            width: 100%;
+            height: 400px;
+            border: 2px solid #333;
+        }
+        .controls {
+            margin-top: 20px;
+            padding: 20px;
+            background: #222;
+            border-radius: 8px;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .status {
+            margin-top: 10px;
+            padding: 10px;
+            background: #333;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>Vimeo Player Test</h1>
+        <p>Testing if Vimeo Player API works in isolation</p>
+        
+        <iframe
+            id="vimeo-iframe"
+            src="https://player.vimeo.com/video/1085267809?dnt=1&api=1&player_id=test-player&controls=0&title=0&byline=0&portrait=0"
+            frameborder="0"
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowfullscreen
+        ></iframe>
+
+        <div class="controls">
+            <button onclick="testPlay()">Play</button>
+            <button onclick="testPause()">Pause</button>
+            <button onclick="testMute()">Mute/Unmute</button>
+            <button onclick="testVolume()">Set Volume 0.5</button>
+            <button onclick="testSeek()">Seek to 30s</button>
+            <div class="status" id="status">Status: Initializing...</div>
+        </div>
+    </div>
+
+    <script src="https://player.vimeo.com/api/player.js"></script>
+    <script>
+        let player = null;
+        let statusDiv = document.getElementById('status');
+        
+        function updateStatus(message) {
+            statusDiv.textContent = 'Status: ' + message;
+            console.log(message);
+        }
+
+        function testPlay() {
+            if (player) {
+                player.play().then(() => {
+                    updateStatus('Play command sent');
+                }).catch(error => {
+                    updateStatus('Play error: ' + error.message);
+                });
+            } else {
+                updateStatus('Player not ready');
+            }
+        }
+
+        function testPause() {
+            if (player) {
+                player.pause().then(() => {
+                    updateStatus('Pause command sent');
+                }).catch(error => {
+                    updateStatus('Pause error: ' + error.message);
+                });
+            } else {
+                updateStatus('Player not ready');
+            }
+        }
+
+        function testMute() {
+            if (player) {
+                player.getVolume().then(volume => {
+                    const newVolume = volume > 0 ? 0 : 1;
+                    return player.setVolume(newVolume);
+                }).then(() => {
+                    updateStatus('Volume toggled');
+                }).catch(error => {
+                    updateStatus('Mute error: ' + error.message);
+                });
+            } else {
+                updateStatus('Player not ready');
+            }
+        }
+
+        function testVolume() {
+            if (player) {
+                player.setVolume(0.5).then(() => {
+                    updateStatus('Volume set to 0.5');
+                }).catch(error => {
+                    updateStatus('Volume error: ' + error.message);
+                });
+            } else {
+                updateStatus('Player not ready');
+            }
+        }
+
+        function testSeek() {
+            if (player) {
+                player.setCurrentTime(30).then(() => {
+                    updateStatus('Seeked to 30 seconds');
+                }).catch(error => {
+                    updateStatus('Seek error: ' + error.message);
+                });
+            } else {
+                updateStatus('Player not ready');
+            }
+        }
+
+        // Initialize player when iframe loads
+        document.getElementById('vimeo-iframe').onload = function() {
+            updateStatus('Iframe loaded, initializing player...');
+            
+            try {
+                player = new Vimeo.Player('vimeo-iframe');
+                updateStatus('Player instance created');
+                
+                player.on('ready', function() {
+                    updateStatus('Vimeo Player is READY!');
+                });
+
+                player.on('play', function() {
+                    updateStatus('Video started playing');
+                });
+
+                player.on('pause', function() {
+                    updateStatus('Video paused');
+                });
+
+                player.on('timeupdate', function(data) {
+                    console.log('Time update:', data.seconds);
+                });
+
+                player.on('error', function(error) {
+                    updateStatus('Player error: ' + error.message);
+                });
+
+                // Try to get video info
+                player.getVideoTitle().then(function(title) {
+                    updateStatus('Video title: ' + title);
+                }).catch(error => {
+                    updateStatus('Could not get title: ' + error.message);
+                });
+
+            } catch (error) {
+                updateStatus('Error creating player: ' + error.message);
+            }
+        };
+    </script>
+</body>
+</html> 

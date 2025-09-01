@@ -1,0 +1,65 @@
+{
+  "short_name": "SHUAN",
+  "name": "SHUAN - Premium Motorcycle Helmet Storage",
+  "description": "Cut-resistant, lockable, under-seat mounted helmet storage built for riders who care about style and security.",
+  "icons": [
+    {
+      "src": "favicon_io logo3/android-chrome-192x192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any maskable",
+      "density": "2.0"
+    },
+    {
+      "src": "favicon_io logo3/android-chrome-512x512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable",
+      "density": "4.0"
+    },
+    {
+      "src": "favicon_io logo3/android-chrome-192x192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any"
+    },
+    {
+      "src": "favicon_io logo3/android-chrome-512x512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any"
+    },
+    {
+      "src": "favicon_io logo3/favicon-16x16.png",
+      "type": "image/png",
+      "sizes": "16x16"
+    },
+    {
+      "src": "favicon_io logo3/favicon-32x32.png",
+      "type": "image/png",
+      "sizes": "32x32"
+    },
+    {
+      "src": "favicon_io logo3/favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "theme_color": "#000000",
+  "background_color": "#ffffff",
+  "scope": "/",
+  "lang": "en",
+  "dir": "ltr",
+  "categories": ["lifestyle", "shopping", "automotive"],
+  "screenshots": [
+    {
+      "src": "favicon_io logo3/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "form_factor": "wide"
+    }
+  ]
+}
